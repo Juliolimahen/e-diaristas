@@ -8,7 +8,7 @@ export default function useIndex() {
     cepValido = useMemo(() => {
       return ValidationService.cep(cep);
     }, [cep]),
-    [erro, setErro] = useState(''),
+    [erro, setErro] = useState(""),
     [buscaFeita, setBuscaFeita] = useState(false),
     [carregando, setCarregando] = useState(false),
     [diaristas, setDiaristas] = useState([] as UserShortInterface[]),
