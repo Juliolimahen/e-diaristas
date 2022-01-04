@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ScrollView } from 'react-native';
 import PageTitle from 'ui/components/data-display/PageTitle/PageTitle';
 import TextInput from 'ui/components/inputs/TextInput/TextInput';
@@ -8,6 +8,7 @@ import UserInformation from "ui/components/data-display/UserInformation/UserInfo
 import { ErrorText, FormContainer, ResponseContainer, TextContainer } from "@styles/pages/encontrar-diarista.style";
 import { useTheme } from "@emotion/react";
 import useIndex from "data/hooks/pages/useIndex.page";
+import useEncontrarDiarista from "data/hooks/pages/encontrarDiarista.page.mobile";
 
 const EncontrarDiarista: React.FC = () => {
     const { colors } = useTheme();
@@ -19,7 +20,14 @@ const EncontrarDiarista: React.FC = () => {
         diaristas,
         buscaFeita,
         carregando,
-        diaristasRestantes, } = useIndex();
+        diaristasRestantes, } = useIndex(), { cepAutomatico } = useEncontrarDiarista();
+
+    useEffect(() => {
+        if (cepAutomatico && !cep) {
+            setCep(cepAutomatico);
+            buscarProfissionais(cepAutomatico);
+        }
+    }, [cepAutomatico]);
 
     return (
         <ScrollView>
@@ -38,7 +46,7 @@ const EncontrarDiarista: React.FC = () => {
                         mask: '99.999-999',
                     }}
                     customTextInput={TextInput}
-                    customTextInputProps={{ 
+                    customTextInputProps={{
                         label: 'Digite seu CEP',
                     }}
                 />
@@ -57,40 +65,42 @@ const EncontrarDiarista: React.FC = () => {
                 </Button>
             </FormContainer>
 
-            {buscaFeita && (diaristas.length > 0 ? (
-            <ResponseContainer>
-                {diaristas.map((item, index) => (
-                    <UserInformation
-                        key={index}
-                        name={item.nome_completo}
-                        rating={item.reputacao || 0}
-                        picture={item.foto_usuario || ''}
-                        description={item.cidade}
-                        darker={index % 2 === 1}
-                    />
-                ))}
+            {buscaFeita &&
+                (diaristas.length > 0 ? (
+                    <ResponseContainer>
+                        {diaristas.map((item, index) => (
+                            <UserInformation
+                                key={index}
+                                name={item.nome_completo}
+                                rating={item.reputacao || 0}
+                                picture={item.foto_usuario || ' '}
+                                description={item.cidade}
+                                darker={index % 2 === 1}
+                            />
+                        ))}
 
-                {diaristasRestantes > 0 && (
+                        {diaristasRestantes > 0 && (
+                            <TextContainer>
+                                ...e mais {diaristasRestantes}{' '}
+                                {diaristasRestantes > 1
+                                    ? 'profissionais atendem'
+                                    : 'profissional atende'}{' '} ao seu endereço.
+                            </TextContainer>
+                        )}
+
+                        <Button
+                            mode={'contained'}
+                            color={colors.accent}
+                        >
+                            Contratar um profissional
+                        </Button>
+
+                    </ResponseContainer>
+                ) : (
                     <TextContainer>
-                        ...e mais {diaristasRestantes}{''}
-                        {diaristasRestantes > 1
-                            ? 'profissionais atendem'
-                            : 'profissional atende'}{''} ao seu endereço.
+                        Ainda não temos nenhuma diarista disponível em sua região
                     </TextContainer>
-                )}
-
-                <Button
-                    mode={'contained'}
-                    color={colors.accent}
-                >
-                    Contratar um profissional
-                </Button>
-
-            </ResponseContainer>) :
-                (<TextContainer>
-                    Ainda não temos nenhuma diarista disponível em sua região
-                </TextContainer>)
-            )}
+                ))}
 
         </ScrollView>
     );
