@@ -7,4 +7,5 @@
 <img src="img/4.png"/><br>
 <li><p><b>Aplicativo móvel (React Native)</b></p></li>
 <div align="center"><img height="40%" width="40%" src="img/5.png"/><br>
-<img height="40%" width="40%" src="img/6.png"/></div></ul>
+<img height="40%" width="40%" src="img/6.png"/></div>
+</ul>

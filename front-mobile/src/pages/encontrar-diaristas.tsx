@@ -101,7 +101,6 @@ const EncontrarDiaristas: React.FC = () => {
                         Ainda não temos nenhuma diarista disponível em sua região
                     </TextContainer>
                 ))}
-
         </ScrollView>
     );
 };
