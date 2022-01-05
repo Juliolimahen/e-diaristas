@@ -15,10 +15,8 @@ export default function useEncontrarDiarista() {
                 if (gpsPermitido) {
                     setCoordenadas(await pegarCoordenadas())
                 }
-            } catch (error) {
-
-            }
-        })
+            } catch (error) {}
+        })()
     }, []);
 
     useEffect(() => {
@@ -27,12 +25,10 @@ export default function useEncontrarDiarista() {
                 if (coordenadas) {
                     setCepAutomatico(await pegarCep());
                 }
-            } catch (error) {
+            } catch (error) {}
+        })()
 
-            }
-        })
-
-    }, [coordenadas])
+    }, [coordenadas]);
 
     async function pedirPermissao(): Promise<boolean> {
         try {

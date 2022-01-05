@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('titulo','Página Inicial')
+@section('titulo','Administrativo')
 
 @section('conteudo')
 <h1>Lista de Diaristas</h1>
@@ -22,8 +22,7 @@
             <td>
                 <a href="{{route('diaristas.edit', $diarista)}}" class="btn btn-primary">Alterar
                 </a>
-                <a href="{{route('diaristas.destroy', $diarista)}}" class="btn btn-danger"
-                    onclick="return confirm('Tem certeza que deseja apagar?')">Excluir</a>
+                <a href="{{route('diaristas.destroy', $diarista)}}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja apagar?')">Excluir</a>
             </td>
         </tr>
         @empty

@@ -4,13 +4,13 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationTheme } from "ui/themes/app-theme";
 import Index from "pages";
-import EncontrarDiarista from "pages/encontrar-diarista";
+import EncontrarDiaristas from "pages/encontrar-diaristas";
 import Logo from '@assets/img/logos/e-diaristas-logo.png';
 
 
 const Stack = createStackNavigator();
 
-export type RootStackParamList={
+export type RootStackParamList = {
     Index: undefined;
     EncontrarDiarista: undefined;
 };
@@ -33,8 +33,8 @@ const Router: React.FC = () => {
                     ),
                 }}
             />
-            <Stack.Screen name={'EncontrarDiarista'}
-                component={EncontrarDiarista}
+            <Stack.Screen name={'EncontrarDiaristas'}
+                component={EncontrarDiaristas}
                 options={{
                     title: 'Encontrar Diaristas',
                 }}

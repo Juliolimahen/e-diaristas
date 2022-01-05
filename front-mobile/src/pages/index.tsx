@@ -12,7 +12,7 @@ interface IndexProps {
 const Index: React.FC<IndexProps> = ({ navigation }) => {
     return (
         <View style={{ flex: 1, justifyContent: "center" }}>
-            <Button mode={'contained'} onPress={() => navigation.navigate('EncontrarDiarista')}
+            <Button mode={'contained'} onPress={() => navigation.navigate('EncontrarDiaristas')}
             >Encontrar Diaristas
             </Button>
         </View>

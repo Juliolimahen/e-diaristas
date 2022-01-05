@@ -8,19 +8,19 @@ import UserInformation from "ui/components/data-display/UserInformation/UserInfo
 import { ErrorText, FormContainer, ResponseContainer, TextContainer } from "@styles/pages/encontrar-diarista.style";
 import { useTheme } from "@emotion/react";
 import useIndex from "data/hooks/pages/useIndex.page";
-import useEncontrarDiarista from "data/hooks/pages/encontrarDiarista.page.mobile";
+import useEncontrarDiarista from "data/hooks/pages/useEncontrarDiarista.page.mobile";
 
-const EncontrarDiarista: React.FC = () => {
+const EncontrarDiaristas: React.FC = () => {
     const { colors } = useTheme();
     const { cep,
         setCep,
         cepValido,
         buscarProfissionais,
         erro,
-        diaristas,
         buscaFeita,
         carregando,
-        diaristasRestantes, } = useIndex(), { cepAutomatico } = useEncontrarDiarista();
+        diaristasRestantes, diaristas,
+    } = useIndex(), { cepAutomatico } = useEncontrarDiarista();
 
     useEffect(() => {
         if (cepAutomatico && !cep) {
@@ -73,7 +73,7 @@ const EncontrarDiarista: React.FC = () => {
                                 key={index}
                                 name={item.nome_completo}
                                 rating={item.reputacao || 0}
-                                picture={item.foto_usuario || ' '}
+                                picture={item.foto_usuario || ''}
                                 description={item.cidade}
                                 darker={index % 2 === 1}
                             />
@@ -106,4 +106,4 @@ const EncontrarDiarista: React.FC = () => {
     );
 };
 
-export default EncontrarDiarista;
+export default EncontrarDiaristas;
