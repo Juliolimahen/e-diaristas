@@ -88,7 +88,7 @@ const Home: NextPage = () => {
                   color={"secondary"}
                   sx={{ mt: 5 }}
                 >
-                  Contrtar um profissional
+                  Contratar um profissional
                 </Button>
               </Container>
             </ProfissionaisPaper>
